@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI Run Garmin — Screenshot 3: AI Suggest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+      }
+      body {
+        background: #0d1e35;
+        font-family: "Montserrat", system-ui, sans-serif;
+        color: #fff;
+        position: relative;
+      }
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .top-area {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 580px;
+        padding: 120px 80px 0;
+        z-index: 1;
+      }
+      .eyebrow {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #4a7fc1;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .eyebrow-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #4a7fc1;
+      }
+      .headline {
+        font-size: 100px;
+        font-weight: 900;
+        line-height: 0.92;
+        letter-spacing: -3px;
+        text-transform: uppercase;
+        margin-bottom: 32px;
+      }
+      .headline .accent {
+        color: #4a7fc1;
+      }
+      .subline {
+        font-size: 34px;
+        font-weight: 500;
+        color: #7a9abf;
+        line-height: 1.4;
+      }
+
+      .phone-wrapper {
+        position: absolute;
+        left: 280px;
+        top: 650px;
+        width: 520px;
+        height: 1130px;
+        z-index: 2;
+      }
+      .vol-up {
+        position: absolute;
+        left: -8px;
+        top: 196px;
+        width: 7px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 4px 0 0 4px;
+      }
+      .vol-down {
+        position: absolute;
+        left: -8px;
+        top: 258px;
+        width: 7px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 4px 0 0 4px;
+      }
+      .power {
+        position: absolute;
+        right: -8px;
+        top: 236px;
+        width: 7px;
+        height: 70px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 0 4px 4px 0;
+      }
+      .phone-frame {
+        position: absolute;
+        inset: 0;
+        border: 4px solid rgba(255, 255, 255, 0.85);
+        border-radius: 52px;
+        background: #f9f9f9;
+        box-shadow: 10px 10px 0 0 #1f487e;
+        overflow: hidden;
+      }
+      .dynamic-island {
+        position: absolute;
+        top: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 116px;
+        height: 36px;
+        background: #000;
+        border-radius: 20px;
+        z-index: 50;
+      }
+      .status-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        z-index: 40;
+        display: flex;
+        align-items: flex-end;
+        padding: 0 22px 8px;
+        justify-content: space-between;
+        background: #fff;
+      }
+      .status-time {
+        font-size: 13px;
+        font-weight: 700;
+        color: #1a1a1a;
+      }
+      .status-battery {
+        width: 22px;
+        height: 11px;
+        border: 1.5px solid #1a1a1a;
+        border-radius: 2px;
+        position: relative;
+      }
+      .status-battery::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        bottom: 2px;
+        width: 70%;
+        background: #1a1a1a;
+        border-radius: 1px;
+      }
+
+      .screen-content {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #f0f4f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+      }
+      .ph-icon {
+        width: 64px;
+        height: 64px;
+        opacity: 0.28;
+      }
+      .ph-label {
+        font-size: 18px;
+        font-weight: 700;
+        color: #999;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .ph-hint {
+        font-size: 14px;
+        font-weight: 500;
+        color: #bbb;
+        text-align: center;
+        max-width: 380px;
+        line-height: 1.55;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="blob"
+      style="
+        width: 700px;
+        height: 700px;
+        top: -200px;
+        right: -100px;
+        background: #1f487e;
+        opacity: 0.25;
+      "
+    ></div>
+    <div
+      class="blob"
+      style="
+        width: 500px;
+        height: 500px;
+        bottom: -200px;
+        left: -100px;
+        background: #1f487e;
+        opacity: 0.15;
+      "
+    ></div>
+
+    <div class="top-area">
+      <div class="eyebrow">
+        <div class="eyebrow-dot"></div>
+        AI Suggestions
+      </div>
+      <div class="headline">
+        LET AI<br /><span class="accent">SUGGEST</span><br />A RUN
+      </div>
+      <div class="subline">
+        Pick your mood, goal, duration &amp; pace —<br />get a ready-made
+        workout in seconds.
+      </div>
+    </div>
+
+    <div class="phone-wrapper">
+      <div class="vol-up"></div>
+      <div class="vol-down"></div>
+      <div class="power"></div>
+      <div class="phone-frame">
+        <img src="ressources/suggest.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;" />
+      </div>
+    </div>
+  </body>
+</html>

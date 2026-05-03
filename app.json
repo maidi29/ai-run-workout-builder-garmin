@@ -1,0 +1,69 @@
+{
+  "expo": {
+    "name": "AI Run Workout Builder",
+    "slug": "ai-run-workout-builder",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash.jpg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "This app needs access to your photos to extract workout data from images",
+        "NSCameraUsageDescription": "This app needs camera access to capture workout documentation",
+        "NSSpeechRecognitionUsageDescription": "This app uses speech recognition to transcribe your workout descriptions",
+        "NSMicrophoneUsageDescription": "This app needs microphone access to dictate workout descriptions"
+      }
+    },
+    "android": {
+      "package": "com.garminworkouts.app",
+      "permissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": {
+            "scheme": "garminworkouts"
+          },
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ],
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to use the microphone to dictate workouts.",
+          "speechRecognitionPermission": "Allow $(PRODUCT_NAME) to use speech recognition to transcribe your workout descriptions."
+        }
+      ],
+      "expo-font"
+    ],
+    "scheme": "garminworkouts",
+    "extra": {
+      "eas": {
+        "projectId": "c159304d-c3ca-492d-843c-5aa5dbc13803"
+      }
+    },
+    "owner": "maidi"
+  }
+}

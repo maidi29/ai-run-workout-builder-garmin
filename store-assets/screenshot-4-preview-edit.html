@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI Run Garmin — Screenshot 4: Preview &amp; Edit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+      }
+      body {
+        background: #0d1e35;
+        font-family: "Montserrat", system-ui, sans-serif;
+        color: #fff;
+        position: relative;
+      }
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .top-area {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 520px;
+        padding: 120px 80px 0;
+        z-index: 1;
+      }
+      .eyebrow {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #4a7fc1;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .eyebrow-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #4a7fc1;
+      }
+      .headline {
+        font-size: 96px;
+        font-weight: 900;
+        line-height: 0.92;
+        letter-spacing: -3px;
+        text-transform: uppercase;
+        margin-bottom: 28px;
+      }
+      .headline .accent {
+        color: #4a7fc1;
+      }
+      .subline {
+        font-size: 32px;
+        font-weight: 500;
+        color: #7a9abf;
+        line-height: 1.4;
+      }
+
+      /* Two overlapping phones — same technique as feature graphic */
+      .phones-area {
+        position: absolute;
+        top: 650px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+      }
+
+      /* Back phone (left, rotated behind) */
+      .phone-back {
+        position: absolute;
+        left: 130px;
+        top: 60px;
+        width: 460px;
+        height: 1000px;
+        transform: rotate(-5deg);
+        z-index: 2;
+      }
+      /* Front phone (right, overlapping) */
+      .phone-front {
+        position: absolute;
+        left: 550px;
+        top: 90px;
+        width: 460px;
+        height: 1000px;
+        transform: rotate(4deg);
+        z-index: 3;
+      }
+
+      .vol-up {
+        position: absolute;
+        left: -8px;
+        top: 180px;
+        width: 7px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 4px 0 0 4px;
+      }
+      .vol-down {
+        position: absolute;
+        left: -8px;
+        top: 238px;
+        width: 7px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 4px 0 0 4px;
+      }
+      .power {
+        position: absolute;
+        right: -8px;
+        top: 218px;
+        width: 7px;
+        height: 66px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 0 4px 4px 0;
+      }
+
+      .phone-frame {
+        position: absolute;
+        inset: 0;
+        border: 4px solid rgba(255, 255, 255, 0.85);
+        border-radius: 48px;
+        background: #f9f9f9;
+        overflow: hidden;
+      }
+      .phone-back .phone-frame {
+        box-shadow: -8px 8px 0 0 rgba(31, 72, 126, 0.6);
+      }
+      .phone-front .phone-frame {
+        box-shadow: 8px 8px 0 0 #1f487e;
+      }
+
+      .dynamic-island {
+        position: absolute;
+        top: 13px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 108px;
+        height: 34px;
+        background: #000;
+        border-radius: 18px;
+        z-index: 50;
+      }
+      .status-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 58px;
+        z-index: 40;
+        display: flex;
+        align-items: flex-end;
+        padding: 0 20px 7px;
+        justify-content: space-between;
+        background: #fff;
+      }
+      .status-time {
+        font-size: 12px;
+        font-weight: 700;
+        color: #1a1a1a;
+      }
+      .status-battery {
+        width: 20px;
+        height: 10px;
+        border: 1.5px solid #1a1a1a;
+        border-radius: 2px;
+        position: relative;
+      }
+      .status-battery::after {
+        content: "";
+        position: absolute;
+        top: 1.5px;
+        left: 1.5px;
+        bottom: 1.5px;
+        width: 70%;
+        background: #1a1a1a;
+        border-radius: 1px;
+      }
+
+      .screen-content {
+        position: absolute;
+        top: 58px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #f0f4f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+      }
+      .ph-icon {
+        width: 56px;
+        height: 56px;
+        opacity: 0.28;
+      }
+      .ph-label {
+        font-size: 15px;
+        font-weight: 700;
+        color: #999;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .ph-hint {
+        font-size: 12px;
+        font-weight: 500;
+        color: #bbb;
+        text-align: center;
+        max-width: 340px;
+        line-height: 1.55;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="blob"
+      style="
+        width: 600px;
+        height: 600px;
+        top: -150px;
+        left: -100px;
+        background: #1f487e;
+        opacity: 0.22;
+      "
+    ></div>
+    <div
+      class="blob"
+      style="
+        width: 600px;
+        height: 600px;
+        bottom: -150px;
+        right: -100px;
+        background: #1f487e;
+        opacity: 0.18;
+      "
+    ></div>
+
+    <div class="top-area">
+      <div class="eyebrow">
+        <div class="eyebrow-dot"></div>
+        Preview &amp; Edit
+      </div>
+      <div class="headline">
+        REVIEW,<br /><span class="accent">EDIT</span> &amp;<br />PUSH
+      </div>
+      <div class="subline">
+        Fine-tune every step, then send<br />straight to your Garmin Connect and
+        schedule it to be immediately available on your watch.
+      </div>
+    </div>
+
+    <div class="phones-area">
+      <!-- Back phone: Workout Preview -->
+      <div class="phone-back">
+        <div class="vol-up"></div>
+        <div class="vol-down"></div>
+        <div class="power"></div>
+        <div class="phone-frame">
+          <img src="ressources/preview.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;" />
+        </div>
+      </div>
+
+      <!-- Front phone: Edit / Schedule -->
+      <div class="phone-front">
+        <div class="vol-up"></div>
+        <div class="vol-down"></div>
+        <div class="power"></div>
+        <div class="phone-frame">
+          <img src="ressources/preview-2.png" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
