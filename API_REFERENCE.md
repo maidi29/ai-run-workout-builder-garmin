@@ -267,7 +267,7 @@ Pins a previously created workout to a date on the Connect calendar.
 The backend calls OpenAI directly (`backend/src/services/aiService.ts`) — the device never talks to OpenAI. Models in use:
 
 - `gpt-4o` for image extraction (`processImageMultiple`)
-- `gpt-4-turbo` for text extraction and suggest-mode generation (`processTextMultiple`, `generateFromContext`)
+- `gpt-4o-mini` for text extraction and suggest-mode generation (`processTextMultiple`, `generateFromContext`)
 
 Standard `POST https://api.openai.com/v1/chat/completions` with `Authorization: Bearer ${OPENAI_API_KEY}`. Prompt construction and JSON-shape parsing live in `aiService.ts`.
 

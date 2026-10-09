@@ -152,7 +152,7 @@ class AIService {
       const sanitized = this.sanitizeInput(description, MAX_TEXT_LENGTH);
 
       const response = await this.openai.chat.completions.create({
-        model: "gpt-4-turbo",
+        model: "gpt-4o-mini",
         response_format: { type: "json_object" },
         messages: [
           {
@@ -204,7 +204,7 @@ class AIService {
         : undefined;
 
       const response = await this.openai.chat.completions.create({
-        model: "gpt-4-turbo",
+        model: "gpt-4o-mini",
         response_format: { type: "json_object" },
         messages: [
           {
