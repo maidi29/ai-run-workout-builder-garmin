@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "AI Run Workout Builder",
-    "slug": "ai-run-workout-builder",
+    "slug": "garmin-workouts",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
